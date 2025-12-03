@@ -1,0 +1,129 @@
+/* 
+#9CC6DB 
+#FCF6D9 
+#CF4B00 
+#DDBA7D 
+*/
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap");
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #9CC6DB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.font-dynapuff {
+    font-family: "DynaPuff", system-ui;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.big-text {
+    font-size: 50px;
+    color: #FCF6D9;
+    text-shadow: black 1px 1px 1px;
+    pointer-events: none;
+}
+
+.small-text {
+    font-size: 30px;
+    color: #CF4B00;
+    pointer-events: none;
+    text-shadow: black 1px 1px 1px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 150px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.start-button {
+	background-color:#DDBA7D;
+	border-radius:8px;
+	border:2px solid #FCF6D9;
+	color:#FCF6D9;
+	font-size:20px;
+	padding:12px 39px;
+	text-decoration:none;
+    font-weight: 400;
+    cursor: pointer
+}
+
+.start-button:hover {
+	background-color:#FCF6D9;
+    color: #DDBA7D;
+	border:2px solid #DDBA7D;
+}
+
+.restart-button {
+    padding: 10px 20px;
+    font-size: 10px;
+    color: #CF4B00;
+    border: 2px solid #CF4B00;
+}
+
+.winner-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-button:active {
+	position:relative;
+	top:1px;
+}
+
+.main-tictactoe {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+}
+
+.row {
+    display: flex;
+    width: 300px;
+    height: 100px;
+}
+
+.column {
+    display: flex;
+    height: 100px;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: #DDBA7D;
+    border: 2px #FCF6D9 solid;
+    cursor: pointer;
+}
+
+.column-winner {
+    background-color: lightgreen;
+}
+
+.mid {
+    border-left: 1px #FCF6D9 solid;
+    border-right: 1px #FCF6D9 solid;
+}
