@@ -10,7 +10,8 @@ let clicked = false
 let O_moves = []
 let X_moves = []
 let moveCount = 0
-winner = false
+let winner = false
+let draw = false
 
 const winningMoves = [
     ['top-left', 'top-center', 'top-right'], 
@@ -92,9 +93,7 @@ columns.forEach((column) => {
                     move.classList.add('big-text')
                     selectedColumn.appendChild(move)
                     moveCount += 1
-                    console.log(moveCount)
-                    if (moveCount === 9) {
-                        console.log("DRAW")
+                    if (moveCount === 9 && winner === false) {
                         nextMove.textContent = "DRAW"
 
                         restartButton(menu)
