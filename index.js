@@ -2,7 +2,6 @@ const columns = document.querySelectorAll(".column")
 const nextMove = document.querySelector("#next-move")
 const menu = document.querySelector(".winner-wrapper")
 
-
 let clicked = false
 let O_moves = []
 let X_moves = []
@@ -21,7 +20,6 @@ const winningMoves = [
 ]
 
 const restartButton = (menu) => {
-
     const button = document.createElement('a')
     button.classList.add('start-button')
     button.classList.add('font-dynapuff')
