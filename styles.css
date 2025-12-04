@@ -39,6 +39,10 @@ body {
     text-shadow: black 1px 1px 1px;
 }
 
+.unclickable {
+    user-select: none;
+}
+
 .main-container {
     display: flex;
     flex-direction: column;

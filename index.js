@@ -1,12 +1,8 @@
-console.log("TEST")
-
 const columns = document.querySelectorAll(".column")
 const nextMove = document.querySelector("#next-move")
 const menu = document.querySelector(".winner-wrapper")
 
-
 let clicked = false
-
 let O_moves = []
 let X_moves = []
 let moveCount = 0
@@ -83,6 +79,7 @@ const nextPlayerToMove = (playerMoves, selectedColumn, player) => {
     const move = document.createElement("h3")
     move.textContent = `${player}`
     move.classList.add('big-text')
+    move.classList.add('unclickable')
     selectedColumn.appendChild(move)
     moveCount += 1
 }
