@@ -2,6 +2,7 @@ const columns = document.querySelectorAll(".column")
 const nextMove = document.querySelector("#next-move")
 const menu = document.querySelector(".winner-wrapper")
 
+
 let clicked = false
 let O_moves = []
 let X_moves = []
@@ -44,67 +45,67 @@ const restartButton = (menu) => {
         })
         winner = false
     })
-
 }
 
 const nextPlayerToMove = (playerMoves, selectedColumn, player) => {
-    nextMove.textContent = `its ${player} turn..`
+    const isSelected = selectedColumn.children[0]
 
-    playerMoves.push(selectedColumn.id)
-    if (playerMoves.length > 2) {
-        winningMoves.forEach((item) => {
-            let count = 0
-            
-            playerMoves.forEach((move) => {
-                const checkWin = item.includes(move)
-                if (checkWin) {
-                    count += 1
-                    if (count === 3) {
-                        console.log(`${player} WIN`)
-                        item.forEach(winningMove => {
-                            const column = document.getElementById(`${winningMove}`)
-                            column.classList.add('column-winner')
-                        })
-
-                        restartButton(menu)
-                        nextMove.textContent = `${player} is WINNER`
-                        winner = true
-                    }
-                }
+    if (!isSelected) {
+        if (player === "O") {
+            nextMove.textContent = `its X turn..`
+        } else {
+            nextMove.textContent = `its O turn..`
+        }
+        
+        playerMoves.push(selectedColumn.id)
+        if (playerMoves.length > 2) {
+            winningMoves.forEach((item) => {
+                let count = 0
                 
-            })
-        })
-    }
+                playerMoves.forEach((move) => {
+                    const checkWin = item.includes(move)
+                    if (checkWin) {
+                        count += 1
+                        if (count === 3) {
+                            console.log(`${player} WIN`)
+                            item.forEach(winningMove => {
+                                const column = document.getElementById(`${winningMove}`)
+                                column.classList.add('column-winner')
+                            })
 
-    const move = document.createElement("h3")
-    move.textContent = `${player}`
-    move.classList.add('big-text')
-    move.classList.add('unclickable')
-    selectedColumn.appendChild(move)
-    moveCount += 1
+                            restartButton(menu)
+                            nextMove.textContent = `${player} is WINNER`
+                            winner = true
+                        }
+                    }
+                    
+                })
+            })
+        }
+
+        const move = document.createElement("h3")
+        move.textContent = `${player}`
+        move.classList.add('big-text')
+        move.classList.add('unclickable')
+        selectedColumn.appendChild(move)
+        moveCount += 1
+
+        if (moveCount === 9 && winner === false) {
+            nextMove.textContent = "DRAW"
+            restartButton(menu)
+        }
+    }
 }
 
 columns.forEach((column) => {
     column.addEventListener('click', (e) => {
         const selectedColumn = e.target
-        if (!winner) {
-            if (!clicked) {
-                const child = selectedColumn.children[0]
-                if (!child) {
-                    nextPlayerToMove(O_moves, selectedColumn, "O")
-                    if (moveCount === 9 && winner === false) {
-                        nextMove.textContent = "DRAW"
-                        restartButton(menu)
-                    }
-                    clicked = true
-                }
-            } else {
-                const child = selectedColumn.children[0]
-                if (!child) {
-                    nextPlayerToMove(X_moves, selectedColumn, "X")
-                    clicked = false
-                }
-            }
+        if (!winner && !clicked) {
+                nextPlayerToMove(O_moves, selectedColumn, "O")
+                clicked = true         
+        } else {
+                nextPlayerToMove(X_moves, selectedColumn, "X")
+                clicked = false             
         }
     })
 })
