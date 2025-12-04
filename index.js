@@ -11,7 +11,6 @@ let O_moves = []
 let X_moves = []
 let moveCount = 0
 let winner = false
-let draw = false
 
 const winningMoves = [
     ['top-left', 'top-center', 'top-right'], 
@@ -52,6 +51,41 @@ const restartButton = (menu) => {
 
 }
 
+const nextPlayerToMove = (playerMoves, selectedColumn, player) => {
+    nextMove.textContent = `its ${player} turn..`
+
+    playerMoves.push(selectedColumn.id)
+    if (playerMoves.length > 2) {
+        winningMoves.forEach((item) => {
+            let count = 0
+            
+            playerMoves.forEach((move) => {
+                const checkWin = item.includes(move)
+                if (checkWin) {
+                    count += 1
+                    if (count === 3) {
+                        console.log(`${player} WIN`)
+                        item.forEach(winningMove => {
+                            const column = document.getElementById(`${winningMove}`)
+                            column.classList.add('column-winner')
+                        })
+
+                        restartButton(menu)
+                        nextMove.textContent = `${player} is WINNER`
+                        winner = true
+                    }
+                }
+                
+            })
+        })
+    }
+
+    const move = document.createElement("h3")
+    move.textContent = `${player}`
+    move.classList.add('big-text')
+    selectedColumn.appendChild(move)
+    moveCount += 1
+}
 
 columns.forEach((column) => {
     column.addEventListener('click', (e) => {
@@ -60,86 +94,17 @@ columns.forEach((column) => {
             if (!clicked) {
                 const child = selectedColumn.children[0]
                 if (!child) {
-                    nextMove.textContent = "its X turn.."
-                
-                    O_moves.push(selectedColumn.id)
-                    if (O_moves.length > 2) {
-                        winningMoves.forEach((item) => {
-                            let count = 0
-                            
-                            O_moves.forEach((move) => {
-                                const checkWin = item.includes(move)
-                                if (checkWin) {
-                                    count += 1
-                                    if (count === 3) {
-                                        console.log("O WIN")
-                                        item.forEach(winningMove => {
-                                            const column = document.getElementById(`${winningMove}`)
-                                            column.classList.add('column-winner')
-                                        })
-
-                                        restartButton(menu)
-                                        nextMove.textContent = "O is WINNER"
-                                        winner = true
-                                    }
-                                }
-                                
-                            })
-                        })
-                    }
-
-                    const move = document.createElement("h3")
-                    move.textContent = "O"
-                    move.classList.add('big-text')
-                    selectedColumn.appendChild(move)
-                    moveCount += 1
+                    nextPlayerToMove(O_moves, selectedColumn, "O")
                     if (moveCount === 9 && winner === false) {
                         nextMove.textContent = "DRAW"
-
                         restartButton(menu)
                     }
-
                     clicked = true
                 }
             } else {
                 const child = selectedColumn.children[0]
                 if (!child) {
-                    //console.log("X Turn")
-                    nextMove.textContent = "its O turn.."
-
-                    X_moves.push(selectedColumn.id)
-                    if (X_moves.length > 2) {
-                        winningMoves.forEach((item) => {
-                            let count = 0
-
-                            X_moves.forEach((move) => {
-                                const checkWin = item.includes(move)
-                                if (checkWin) {
-                                    count += 1
-                                    if (count === 3) {
-                                        console.log("X WIN")
-
-                                        item.forEach(winningMove => {
-                                            const column = document.getElementById(`${winningMove}`)
-                                            column.classList.add('column-winner')
-                                        })
-
-                                        restartButton(menu)
-
-                                        nextMove.textContent = "X is WINNER"
-                                        winner = true
-                                    }
-                                }
-                                
-                            })
-                        })
-                    }
-
-                    const move = document.createElement("h3")
-                    move.textContent = "X"
-                    move.classList.add('big-text')
-                    selectedColumn.appendChild(move)
-                    moveCount += 1
+                    nextPlayerToMove(X_moves, selectedColumn, "X")
                     clicked = false
                 }
             }
