@@ -10,28 +10,33 @@
 <body>
     <div class="main-container">
         <div class="menu">
-            <h2 class="font-dynapuff big-text">Tic Tac Toe</h2>
+            <h2 class="font-dynapuff big-text" id="title">Tic Tac Toe</h2>
             <div class="winner-wrapper">
                 <h3 class="font-dynapuff small-text" id="next-move">its O turn..</h3>
             </div>
         </div>
-        <div class="main-tictactoe">
-            <div class="row">
-                <div class="column" id="top-left"></div>
-                <div class="column mid" id="top-center"></div>
-                <div class="column" id="top-right"></div>
+        <div class="scores-and-table">
+            <div class="scoring">
+                <h3 class="tiny-text font-dynapuff" id="O">O-SCORE: 0</h3>
+                <h3 class="tiny-text font-dynapuff" id="X">X-SCORE: 0</h3>
             </div>
-            <div class="row">
-                <div class="column" id="center-left"></div>
-                <div class="column mid" id="center"></div>
-                <div class="column" id="center-right"></div>
+            <div class="main-tictactoe">
+                <div class="row">
+                    <div class="column" id="top-left"></div>
+                    <div class="column mid" id="top-center"></div>
+                    <div class="column" id="top-right"></div>
+                </div>
+                <div class="row">
+                    <div class="column" id="center-left"></div>
+                    <div class="column mid" id="center"></div>
+                    <div class="column" id="center-right"></div>
+                </div>
+                <div class="row">
+                    <div class="column" id="bottom-left"></div>
+                    <div class="column mid" id="bottom-center"></div>
+                    <div class="column" id="bottom-right"></div>
             </div>
-            <div class="row">
-                <div class="column" id="bottom-left"></div>
-                <div class="column mid" id="bottom-center"></div>
-                <div class="column" id="bottom-right"></div>
-            </div>
-        </div>
+        </div>  
     </div>
 </body>
 </html>

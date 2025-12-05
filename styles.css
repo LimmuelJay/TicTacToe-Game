@@ -39,6 +39,12 @@ body {
     text-shadow: black 1px 1px 1px;
 }
 
+.tiny-text {
+    font-size: 15px;
+    color: #CF4B00;
+    text-shadow: black 1px 1px 1px;
+}
+
 .unclickable {
     user-select: none;
 }
@@ -99,6 +105,13 @@ body {
 	top:1px;
 }
 
+.scoring {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
 .main-tictactoe {
     display: flex;
     flex-direction: column;
@@ -130,4 +143,10 @@ body {
 .mid {
     border-left: 1px #FCF6D9 solid;
     border-right: 1px #FCF6D9 solid;
+}
+
+@media (max-height: 500px) {
+    .menu {
+        height: 100px;
+    }
 }
