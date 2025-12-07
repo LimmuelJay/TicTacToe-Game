@@ -24,36 +24,27 @@ const winningMoves = [
     ['top-right', 'center-right', 'bottom-right']
 ]
 
-const restartButton = () => {
-    const button = document.createElement('a')
-    button.classList.add('start-button')
-    button.classList.add('font-dynapuff')
-    button.classList.add('restart-button')
-    button.textContent = "Restart"
-    menu.appendChild(button)
+const button = document.querySelector(".restart-button")
+button.addEventListener('click', () => {
+    O_moves = []
+    X_moves = []
+    moveCount = 0
+    playCount += 1
+    O_turn = (playCount % 2 == 0) ? true : false;
+    whosTurn = (playCount % 2 == 0) ? "O" : "X"
 
-    button.addEventListener('click', () => {
-        O_moves = []
-        X_moves = []
-        moveCount = 0
-        playCount += 1
-        O_turn = (playCount % 2 == 0) ? true : false;
-        whosTurn = (playCount % 2 == 0) ? "O" : "X"
-
-        winnerWrapper.appendChild(nextMove)
-        title.textContent = "Tic Tac Toe"
-        nextMove.textContent = `its ${whosTurn} turn..`
-        button.remove()
-        columns.forEach((column) => {
-            const child = column.children[0]
-            column.classList.remove('column-winner')
-            if (child) {
-                child.remove()
-            }
-        })
-        gameOver = false
+    winnerWrapper.appendChild(nextMove)
+    title.textContent = "Tic Tac Toe"
+    nextMove.textContent = `its ${whosTurn} turn..`
+    columns.forEach((column) => {
+        const child = column.children[0]
+        column.classList.remove('column-winner')
+        if (child) {
+            child.remove()
+        }
     })
-}
+    gameOver = false
+})
 
 const nextPlayerToMove = (playerMoves, selectedColumn, player) => {
     const isSelected = selectedColumn.children[0]
@@ -75,9 +66,7 @@ const nextPlayerToMove = (playerMoves, selectedColumn, player) => {
                                 column.classList.add('column-winner')
                             })
 
-                            nextMove.remove()
-                            restartButton()
-                            title.textContent = `${player} is WINNER`
+                            nextMove.textContent = `${player} is WINNER`
                             gameOver = true
 
                             const winnerPlayer = document.getElementById(`${player}`)
@@ -97,6 +86,7 @@ const nextPlayerToMove = (playerMoves, selectedColumn, player) => {
         const move = document.createElement("h3")
         move.textContent = `${player}`
         move.classList.add('big-text')
+        move.classList.add('move-text')
         move.classList.add('unclickable')
         selectedColumn.appendChild(move)
         moveCount += 1
@@ -110,9 +100,7 @@ const nextPlayerToMove = (playerMoves, selectedColumn, player) => {
         }
         
         if (moveCount === 9 && gameOver === false) {
-            title.textContent = "DRAW"
-            nextMove.remove()
-            restartButton()
+            nextMove.textContent = "DRAW"
         }
     }
 }
