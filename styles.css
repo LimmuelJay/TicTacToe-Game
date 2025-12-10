@@ -8,6 +8,7 @@
 
 html,
 body {
+    height: 100%;
     width: 100%;
     box-sizing: border-box;
     background-color: #9CC6DB;
@@ -69,6 +70,16 @@ body {
     height: 150px;
     align-items: center;
     justify-content: space-around;
+}
+
+.start {
+    justify-content: center;
+    height: 100%
+}
+
+.start-menu {
+    display: flex;
+    flex-direction: column;
 }
 
 .start-button {
